@@ -1,0 +1,19 @@
+.notes{
+  margin: 0;
+}
+
+.notes:nth-child(2n){
+background-color: #b3b3b3;
+}
+
+.notes:nth-child(2n+1){
+background-color: #eee;
+}
+
+button img{
+  width: 150px;
+}
+
+#buttons{
+  display: flex;
+}
