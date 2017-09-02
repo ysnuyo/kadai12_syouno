@@ -29,24 +29,23 @@ window.onload = function(){
   });
 
 function timerfnc(){
-  if(start　==true) {
+  if(start　==　true) {
   console.log(start);
     var timer = setInterval(function(){
       if(end){
         clearInterval(timer);
       }
       count++;
-      console.log(count);
+      //console.log(count);
       $("#time").html("<h3>残り時間は"+ (61-count) +"</h3>");
         if(count > 60){　
+          $("#time").html("<h3>終了！！</h3>");
+          $("#result").html("<h3>ポイントは"+keynum+"で時間切れでした！</h3>");
           clearInterval(timer);
           end = true;
         }
       }, 1000);
   }}
-
-
-
 
 
   $(window).on("keydown",function(e){
@@ -56,14 +55,14 @@ function timerfnc(){
     key[keynum] = e.keyCode;
     console.log( key[keynum]-48 + ":" + val[keynum]);
     if ((val[keynum]==1 && key[keynum]-48==2)||(val[keynum]==2 && key[keynum]-48==3)||(val[keynum]==3 && key[keynum]-48==1)) {//じゃんけん負け
-      //alert(key[keynum] + "wrong!!"+ keynum + "val:" + val[keynum]);
+
       end = true;
       $("#result").html("<h3>ポイントは"+keynum+"で負けました</h3>");
       return true;
     }else if ((val[keynum]==1 && key[keynum]-48==3)||(val[keynum]==2 && key[keynum]-48==1)||(val[keynum]==3 && key[keynum]-48==2)) {//じゃんけん勝ち
-      //alert(key[keynum] + "wrong!!"+ keynum + "val:" + val[keynum]);
+
       end = true;
-      keynum += 1;
+      keynum += 2;
       $("#result").html("<h3>ポイントは"+keynum+"で勝ちました</h3>");
       return true;
     }else if(val[keynum] == key[keynum]-48){//じゃんけんあいこ
@@ -85,18 +84,20 @@ function timerfnc(){
   });
 
   function jankenbutton( buttonval ) {
-    //  alert( buttonval );
+    if (end == true || keynum == long) {
+      return true;
+    }
     key[keynum] = parseInt(buttonval, 10)+48;
-    //  alert(key[keynum]);
+
     if ((val[keynum]==1 && key[keynum]-48==2)||(val[keynum]==2 && key[keynum]-48==3)||(val[keynum]==3 && key[keynum]-48==1)) {//じゃんけん負け
-      //alert(key[keynum] + "wrong!!"+ keynum + "val:" + val[keynum]);
+
       end = true;
       $("#result").html("<h3>ポイントは"+keynum+"で負けました</h3>");
       return true;
     }else if ((val[keynum]==1 && key[keynum]-48==3)||(val[keynum]==2 && key[keynum]-48==1)||(val[keynum]==3 && key[keynum]-48==2)) {//じゃんけん勝ち
-      //alert(key[keynum] + "wrong!!"+ keynum + "val:" + val[keynum]);
+
       end = true;
-      keynum += 1;
+      keynum += 2;
       $("#result").html("<h3>ポイントは"+keynum+"で勝ちました</h3>");
       return true;
     }else if(val[keynum] == key[keynum]-48){//じゃんけんあいこ
